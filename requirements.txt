@@ -1,0 +1,11 @@
+langchain
+langchain-community
+langchain-ollama
+ollama
+chromadb
+python-dotenv
+tiktoken
+requests
+nltk
+numpy
+pandas

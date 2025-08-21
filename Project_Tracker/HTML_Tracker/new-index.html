@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UGENTIC - Visual Vision v2 (Updated)</title>
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --node-bg: #2c2c2c;
+            --node-border: #555;
+            --node-text: #f0f0f0;
+            --accent-color: #00aaff;
+            --llm-color: #20c997;
+            --line-color: #444;
+            --panel-bg: #252525;
+            --header-color: #ffffff;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--node-text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        header {
+            width: 100%;
+            text-align: center;
+            padding: 10px 0 30px 0;
+        }
+        header h1 {
+            color: var(--header-color);
+            font-size: 2.5em;
+            margin: 0;
+        }
+        header p {
+            color: #aaa;
+            font-size: 1.2em;
+        }
+        .llm-selector {
+            margin-top: 20px;
+        }
+        .llm-selector label {
+            font-size: 1em;
+            margin-right: 10px;
+        }
+        .llm-selector select {
+            padding: 8px 12px;
+            border-radius: 5px;
+            background-color: var(--node-bg);
+            color: var(--node-text);
+            border: 1px solid var(--node-border);
+            font-size: 1em;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1600px;
+            gap: 20px;
+        }
+        .diagram {
+            flex-grow: 1;
+            position: relative;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .node {
+            background-color: var(--node-bg);
+            border: 1px solid var(--node-border);
+            border-radius: 8px;
+            padding: 15px 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 10;
+        }
+        .node:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 170, 255, 0.2);
+        }
+        .node h3 {
+            margin: 0;
+            font-size: 1.2em;
+            color: var(--accent-color);
+        }
+        .node p {
+            margin: 5px 0 0;
+            font-size: 0.9em;
+            color: #bbb;
+        }
+        .orchestrator {
+            margin-bottom: 80px;
+        }
+        .departments {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+            margin-bottom: 80px;
+            position: relative;
+        }
+        .toolbox {
+            border: 2px dashed var(--node-border);
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            margin-bottom: 80px;
+        }
+        .toolbox h2 {
+            text-align: center;
+            margin-top: 0;
+            color: #ccc;
+        }
+        .tools {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .tool {
+            padding: 10px 15px;
+            font-size: 0.95em;
+        }
+        .llm-core {
+            border-color: var(--llm-color);
+        }
+        .llm-core h3 {
+            color: var(--llm-color);
+        }
+        .llm-core:hover {
+             box-shadow: 0 8px 25px rgba(32, 201, 151, 0.2);
+        }
+        .line {
+            position: absolute;
+            background-color: var(--line-color);
+            z-index: 1;
+        }
+        .consult-line {
+            position: absolute;
+            border-top: 2px dashed #666;
+            z-index: 5;
+        }
+        .info-panel {
+            width: 350px;
+            flex-shrink: 0;
+            background-color: var(--panel-bg);
+            border-radius: 10px;
+            padding: 25px;
+            height: fit-content;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .info-panel h2 {
+            margin-top: 0;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--node-border);
+            padding-bottom: 10px;
+        }
+        .info-panel p, .info-panel ul {
+            color: #ccc;
+            line-height: 1.6;
+        }
+        .info-panel ul {
+            padding-left: 20px;
+        }
+        #llm-line-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>UGENTIC Visual Vision (Updated)</h1>
+        <p>An interactive representation of the project's hybrid architecture.</p>
+        <div class="llm-selector">
+            <label for="llm-model">Backend LLM:</label>
+            <select id="llm-model">
+                <option>Ollama Llama3 (at http://127.0.0.1:11434/)</option>
+                <option>Ollama Mistral</option>
+                <option>GPT-4</option>
+                <option>Gemini 1.5 Pro</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="diagram" id="diagram">
+            <canvas id="llm-line-canvas"></canvas>
+            <!-- Orchestrator -->
+            <div class="node orchestrator" id="orchestrator" data-id="orchestrator">
+                <h3>Orchestrator Agent</h3>
+                <p>Central Coordinator</p>
+            </div>
+
+            <!-- Department Agents -->
+            <div class="departments" id="departments">
+                <div class="node" id="finance" data-id="finance"><h3>Finance</h3><p>Financial Analysis</p></div>
+                <div class="node" id="hr" data-id="hr"><h3>Human Resources</h3><p>Personnel & Policy</p></div>
+                <div class="node" id="operations" data-id="operations"><h3>Operations</h3><p>Process & Feasibility</p></div>
+                <div class="node" id="marketing" data-id="marketing"><h3>Marketing</h3><p>Market Analysis</p></div>
+                <div class="node" id="sales" data-id="sales"><h3>Sales</h3><p>Lead & Strategy</p></div>
+            </div>
+
+            <!-- MCP Toolbox -->
+            <div class="toolbox">
+                <h2>MCP Toolbox (Shared Capabilities)</h2>
+                <div class="tools" id="tools">
+                    <div class="node tool" data-id="fetch"><h3>Fetch</h3></div>
+                    <div class="node tool" data-id="research"><h3>Research</h3></div>
+                    <div class="node tool" data-id="filesystem"><h3>Filesystem</h3></div>
+                    <div class="node tool" data-id="git"><h3>Git</h3></div>
+                    <div class="node tool" data-id="decision"><h3>Decision</h3></div>
+                    <div class="node tool" data-id="sequentialthinking"><h3>Sequential Thinking</h3></div>
+                    <div class="node tool" data-id="memory"><h3>Memory</h3></div>
+                    <div class="node tool" data-id="time"><h3>Time</h3></div>
+                </div>
+            </div>
+
+            <!-- LLM Core -->
+            <div class="node llm-core" id="llm-core" data-id="llm-core">
+                <h3>LLM Core</h3>
+                <p>Cognitive Engine</p>
+            </div>
+        </div>
+
+        <aside class="info-panel" id="info-panel">
+            <div id="panel-content">
+                <p class="placeholder">Click on a node to see its details.</p>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        const data = {
+            orchestrator: {
+                title: "Orchestrator Agent",
+                description: "The central nervous system of the UGENTIC framework. Manages the primary 'Orchestration Flow' by delegating tasks sequentially to agents and tools. It ensures workflow coherence and synthesizes final outputs.",
+                details: "<ul><li>**Input:** High-level user goals.</li><li>**Output:** A synthesized report or a completed action.</li><li>**Flow:** Manages the primary, sequential execution of tasks.</li></ul>"
+            },
+            finance: {
+                title: "Finance Department",
+                description: "Responsible for all financial analysis. Can engage in peer-to-peer 'Consultation Flow' with other departments to resolve ambiguities before making a decision.",
+                tools: ["Fetch", "Research", "Decision", "SequentialThinking"]
+            },
+            hr: {
+                title: "Human Resources Dept.",
+                description: "Manages personnel data and policy. Can engage in peer-to-peer 'Consultation Flow' with other departments.",
+                tools: ["Filesystem", "Research", "Decision"]
+            },
+            operations: {
+                title: "Operations Department",
+                description: "Focuses on technical feasibility and process. Can engage in peer-to-peer 'Consultation Flow' with other departments.",
+                tools: ["Git", "Filesystem", "SequentialThinking"]
+            },
+            marketing: {
+                title: "Marketing Department",
+                description: "Conducts market research and analysis. Can engage in peer-to-peer 'Consultation Flow' with other departments.",
+                tools: ["Fetch", "Research", "Decision"]
+            },
+            sales: {
+                title: "Sales Department",
+                description: "Manages customer data and strategy. Can engage in peer-to-peer 'Consultation Flow' with other departments.",
+                tools: ["Fetch", "Research", "Memory", "Filesystem"]
+            },
+            llm: {
+                title: "LLM Core",
+                description: "The cognitive engine that powers all agents. This is the selected Large Language Model (e.g., from your Ollama server) that provides the reasoning, language understanding, and generation capabilities for the entire system. **System status is stable and all documentation is synchronized.**",
+                details: "<ul><li>**Function:** Provides core intelligence.</li><li>**Not an Agent:** It is the power source, not an actor.</li><li>**Flow:** All agents are connected to this core, indicating they are all powered by the same underlying model.</li></ul>"
+            },
+            fetch: { title: "Fetch Tool", description: "A specialized tool for retrieving raw data from **valid web URLs (http/https)**.", details: "<ul><li>**Input:** A URL (must start with http:// or https://).</li><li>**Output:** Raw content.</li></ul>" },
+            research: { title: "Research Tool", description: "Synthesizes information from multiple sources, including **internal documents (via RAG)** and **external web content (via Fetch)**, into a coherent analysis.", details: "<ul><li>**Input:** A research query, optional sources (URLs or known policy document names).</li><li>**Output:** A structured summary.</li></ul>" },
+            filesystem: { title: "Filesystem Tool", description: "Provides a secure interface for reading, writing, and managing local files, **strictly adhering to provided or discovered absolute paths**.", details: "<ul><li>**Input:** Absolute file paths, content.</li><li>**Output:** File contents, status, or 'File/Directory not found' errors.</li></ul>" },
+            git: { title: "Git Tool", description: "Interacts with Git repositories to analyze codebases.", details: "<ul><li>**Input:** Repo URL.</li><li>**Output:** Code, commit history.</li></ul>" },
+            decision: { title: "Decision Tool", description: "A utility agent that provides a structured go/no-go judgment or ranks options.", details: "<ul><li>**Input:** Criteria and data.</li><li>**Output:** A ranked list or binary decision.</li></ul>" },
+            sequentialthinking: { title: "Sequential Thinking Tool", description: "Manages complex, multi-step workflows.", details: "<ul><li>**Input:** A high-level plan.</li><li>**Output:** Ordered task executions.</li></ul>" },
+            memory: { title: "Memory Tool", description: "Provides a persistent key-value store for agents.", details: "<ul><li>**Input:** A key and a value.</li><li>**Output:** The stored value.</li></ul>" },
+            time: { title: "Time Tool", description: "A simple utility that provides the current date and time.", details: "<ul><li>**Input:** None.</li><li>**Output:** The current timestamp.</li></ul>" }
+        };
+        // Remap llm-core to llm for easier access
+        data['llm-core'] = data.llm;
+
+        const panel = document.getElementById('panel-content');
+        const diagram = document.getElementById('diagram');
+
+        diagram.addEventListener('click', (e) => {
+            const node = e.target.closest('.node');
+            if (node) {
+                const id = node.dataset.id;
+                const item = data[id];
+                if (item) {
+                    let content = `<h2>${item.title}</h2><p>${item.description}</p>`;
+                    if (item.details) content += item.details;
+                    if (item.tools) content += `<h3>Primary Tools:</h3><ul>${item.tools.map(t => `<li>${t}</li>`).join('')}</ul>`;
+                    panel.innerHTML = content;
+                }
+            }
+        });
+
+        function drawLines() {
+            const canvas = document.getElementById('llm-line-canvas');
+            const ctx = canvas.getContext('2d');
+            const diagramRect = diagram.getBoundingClientRect();
+            canvas.width = diagramRect.width;
+            canvas.height = diagramRect.height;
+
+            const orchestrator = document.getElementById('orchestrator');
+            const departments = ['finance', 'hr', 'operations', 'marketing', 'sales'].map(id => document.getElementById(id));
+            const llmCore = document.getElementById('llm-core');
+
+            // --- Draw Orchestration Lines (Solid) ---
+            const orchRect = orchestrator.getBoundingClientRect();
+            const orchBottom = { x: orchRect.left + orchRect.width / 2 - diagramRect.left, y: orchRect.bottom - diagramRect.top };
+            const deptMidY = departments[0].getBoundingClientRect().top + departments[0].getBoundingClientRect().height / 2 - diagramRect.top;
+            
+            ctx.strokeStyle = '#444';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(orchBottom.x, orchBottom.y);
+            ctx.lineTo(orchBottom.x, deptMidY);
+            ctx.stroke();
+
+            departments.forEach(dept => {
+                const deptRect = dept.getBoundingClientRect();
+                const deptTop = { x: deptRect.left + deptRect.width / 2 - diagramRect.left, y: deptRect.top - diagramRect.top };
+                ctx.beginPath();
+                ctx.moveTo(orchBottom.x, deptMidY);
+                ctx.lineTo(deptTop.x, deptMidY);
+                ctx.lineTo(deptTop.x, deptTop.y);
+                ctx.stroke();
+            });
+
+            // --- Draw Consultation Lines (Dashed) ---
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([5, 5]);
+            for (let i = 0; i < departments.length - 1; i++) {
+                const startRect = departments[i].getBoundingClientRect();
+                const endRect = departments[i+1].getBoundingClientRect();
+                const startPos = { x: startRect.right - diagramRect.left, y: startRect.top + startRect.height / 2 - diagramRect.top };
+                const endPos = { x: endRect.left - diagramRect.left, y: endRect.top + endRect.height / 2 - diagramRect.top };
+                ctx.beginPath();
+                ctx.moveTo(startPos.x, startPos.y);
+                ctx.lineTo(endPos.x, endPos.y);
+                ctx.stroke();
+            }
+            ctx.setLineDash([]); // Reset line dash
+
+            // --- Draw LLM Core Lines (Thinner, Greenish) ---
+            const llmRect = llmCore.getBoundingClientRect();
+            const llmTop = { x: llmRect.left + llmRect.width / 2 - diagramRect.left, y: llmRect.top - diagramRect.top };
+            ctx.strokeStyle = '#20c997';
+            ctx.globalAlpha = 0.5;
+            ctx.lineWidth = 1;
+
+            const allAgents = [orchestrator, ...departments];
+            allAgents.forEach(agent => {
+                const agentRect = agent.getBoundingClientRect();
+                const agentBottom = { x: agentRect.left + agentRect.width / 2 - diagramRect.left, y: agentRect.bottom - diagramRect.top };
+                ctx.beginPath();
+                ctx.moveTo(agentBottom.x, agentBottom.y);
+                ctx.bezierCurveTo(agentBottom.x, agentBottom.y + 80, llmTop.x, llmTop.y - 80, llmTop.x, llmTop.y);
+                ctx.stroke();
+            });
+            ctx.globalAlpha = 1.0;
+        }
+
+        window.onload = drawLines;
+        window.onresize = () => {
+            const canvas = document.getElementById('llm-line-canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawLines();
+        };
+
+    </script>
+</body>
+</html>

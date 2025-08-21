@@ -1,0 +1,12 @@
+# Ignore Virtual Environments
+.venv/
+
+# Ignore Python cache
+__pycache__/
+
+# Ignore reference frameworks
+servers-main/
+
+# Ignore log files
+*.log
+demo_ran.txt

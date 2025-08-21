@@ -1,0 +1,33 @@
+Listing directory structure... 
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\ABOUT_PROJECT_TRACKER.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\directory_structure.txt
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\list_directory - exclude venv git.bat
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\NEVER_CHANGING_PRIVATE_PROMPT.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\NEVER_CHANGING_VISION.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Academic_Submission\Comprehensive_Research_Proposal.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Academic_Submission\Draft_Email_to_Registrar.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Academic_Submission\Draft_Email_to_Supervisor_new.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Academic_Submission\Filled_BSCH_Topic_Submission_Form.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Academic_Submission\Supporting_Literature_Review_new.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Architecture_Tracker\Agent_Hierarchy.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\HTML_Tracker\index.html
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\HTML_Tracker\new-index.html
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\HTML_Tracker\new-index.zip
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\HTML_Tracker\VISUAL_VISION.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Implementation_Tracker\Bug_Tracker.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Implementation_Tracker\Current_Sprint.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Implementation_Tracker\Deployment_Strategy.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Implementation_Tracker\Testing_Status.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Progress_Tracker\Daily_Log.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Progress_Tracker\Milestones.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Progress_Tracker\Timeline.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Project_Checklist-Checkpoint_Tracker\CHECKPOINTS.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Project_Planning_Tracker\PROJECT_PLAN.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Research_Tracker\Case_Study_Data_Analysis.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Research_Tracker\Data_Collection_Methodology.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Research_Tracker\Data_Collection_Plan.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Research_Tracker\Interview_Questions.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Research_Tracker\SME_Alpha_Case_Study.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Research_Tracker\SME_Alpha_Problem_Solution.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Research_Tracker\SME_Alpha_Problem_Solution_2.md
+C:\Users\craig\Desktop\MainProjects\DISSERTATION_FINAL\Project_Tracker\Research_Tracker\SME_Alpha_Problem_Solution_3.md
