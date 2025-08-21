@@ -1,0 +1,413 @@
+(.venv) PS C:\Users\craig\Desktop\MainProjects\Ugentic> python app.py
+--- Initializing UGENTIC Framework Demonstration ---
+Warning: Configured model 'llama3' not found.
+
+--- Please Select an Available Ollama Model ---
+1. gemma3:270m
+2. granite3.3:8b
+3. gemma3n:e4b
+4. deepseek-r1:14b
+5. deepseek-r1:1.5b
+6. deepseek-r1:latest
+7. qwen2.5vl:7b
+8. qwen2.5vl:3b
+9. qwen3:1.7b
+10. qwen3:0.6b
+11. qwen3:8b
+12. deepcoder:14b
+13. deepcoder:1.5b
+14. cogito:3b
+15. llama3.1:8b
+16. nomic-embed-text:latest
+17. qwen2.5-coder:1.5b
+18. gemma3:4b
+19. gemma3:1b
+20. llama3.2:latest
+21. deepseek-r1:8b
+Enter the number of the LLM model you want to use: 3
+RAG Core Initialized.
+Loading documents from C:\Users\craig\Desktop\MainProjects\Ugentic\documents\policies...
+Document loading complete.
+Filesystem Tool initialized with base path: C:\Users\craig\Desktop\MainProjects\Ugentic
+Time Tool initialized.
+FetchTool initialized.
+ResearchTool initialized.
+GitTool initialized.
+MemoryTool initialized.
+Agent 'FinanceAgent' initialized.
+Agent 'HRAgent' initialized.
+Agent 'OperationsAgent' initialized.
+Agent 'MarketingAgent' initialized.
+Agent 'SalesAgent' initialized.
+Agent 'MainOrchestrator' initialized.
+Orchestrator initialized and all agents registered for consultation.
+
+Enter a high-level goal for the Orchestrator (or 'exit' to quit): As the CEO, I need a comprehensive strategic plan for launching a new product line. This plan should include: Market Analysis (target demographics, competitive landscape, market size); Financial Projections (3-year revenue forecast, cost analysis, profitability); Operational Requirements (resources, production timelines, supply chain); HR Impact (staffing, training, organizational changes); Sales Strategy (go-to-market, pricing, distribution). Ensure recommendations are supported by internal policy documents and external market research. Provide a consolidated summary of key findings and actionable recommendations.
+
+>>> Orchestrator received high-level goal: 'As the CEO, I need a comprehensive strategic plan for launching a new product line. This plan should include: Market Analysis (target demographics, competitive landscape, market size); Financial Projections (3-year revenue forecast, cost analysis, profitability); Operational Requirements (resources, production timelines, supply chain); HR Impact (staffing, training, organizational changes); Sales Strategy (go-to-market, pricing, distribution). Ensure recommendations are supported by internal policy documents and external market research. Provide a consolidated summary of key findings and actionable recommendations.' <<<
+  [Orchestrator]: Decomposing goal: 'As the CEO, I need a comprehensive strategic plan for launching a new product line. This plan should include: Market Analysis (target demographics, competitive landscape, market size); Financial Projections (3-year revenue forecast, cost analysis, profitability); Operational Requirements (resources, production timelines, supply chain); HR Impact (staffing, training, organizational changes); Sales Strategy (go-to-market, pricing, distribution). Ensure recommendations are supported by internal policy documents and external market research. Provide a consolidated summary of key findings and actionable recommendations.'
+  [MainOrchestrator LLM]: Processing prompt: 'YOUR RESPONSE MUST BE ONLY A JSON ARRAY. DO NOT INCLUDE ANY OTHER TEXT, CONVERSATION, OR EXPLANATION...'       
+  [Orchestrator Debug]: Raw LLM response for decomposition: '```json
+[
+  {
+    "agent": "Marketing",
+    "task": "Conduct market analysis to identify target demographics, competitive landscape, and market size using internal and external research."
+  },
+  {
+    "agent": "Marketing",
+    "task": "Develop a comprehensive sales strategy including go-to-market plan, pricing models, and distribution channels."
+  },
+  {
+    "agent": "Sales",
+    "task": "Define sales targets and key performance indicators (KPIs) for the new product line."
+  },
+  {
+    "agent": "Finance",
+    "task": "Develop a 3-year revenue forecast for the new product line, incorporating market analysis and sales projections."
+  },
+  {
+    "agent": "Finance",
+    "task": "Conduct a detailed cost analysis for the new product line, including production, marketing, and distribution costs."
+  },
+  {
+    "agent": "Finance",
+    "task": "Project profitability of the new product line based on revenue and cost forecasts."
+  },
+  {
+    "agent": "Operations",
+    "task": "Determine operational requirements for the new product line, including resources, production timelines, and supply chain management."
+  },
+  {
+    "agent": "Operations",
+    "task": "Develop a detailed production plan and timeline for the new product line."
+  },
+  {
+    "agent": "HR",
+    "task": "Assess staffing needs for the new product line, including hiring requirements and organizational structure changes."
+  },
+  {
+    "agent": "HR",
+    "task": "Develop a training plan for employees related to the new product line."
+  },
+  {
+    "agent": "HR",
+    "task": "Identify and address organizational changes required to support the new product line launch."
+  },
+  {
+    "agent": "Finance",
+    "task": "Review internal policy documents to ensure compliance with financial regulations and guidelines for the new product line."
+  },
+  {
+    "agent": "Marketing",
+    "task": "Gather and summarize key findings from external market research reports."
+  },
+  {
+    "agent": "Finance",
+    "task": "Consolidate key findings and actionable recommendations into a comprehensive strategic plan."
+  }
+]
+```'
+[Orchestrator]: Delegating task 'Conduct market analysis to identify target demographics, competitive landscape, and market size using internal and external research.' to Marketing.
+
+  [MarketingAgent]: Executing task: 'Conduct market analysis to identify target demographics, competitive landscape, and market size using internal and external research.'
+  [MarketingAgent LLM]: Processing prompt: 'Conduct market analysis to identify target demographics, competitive landscape, and market size usin...'
+DEBUG: LLM Response String: {"tool": "ResearchTool", "action": "perform_research", "parameters": {"query": "Conduct market analysis to identify target demographics, competitive landscape, and market size using internal and external research."}}
+DEBUG: Parsed Decision: {'tool': 'ResearchTool', 'action': 'perform_research', 'parameters': {'query': 'Conduct market analysis to identify target demographics, competitive landscape, and market size using internal and external research.'}}
+DEBUG: Tool Name: ResearchTool
+DEBUG: Entering TOOL branch with validation
+  [ResearchTool]: Performing research for query: 'Conduct market analysis to identify target demographics, competitive landscape, and market size using internal and external research.'
+  [ResearchTool]: Querying RAG system for internal documents.
+  [ResearchTool]: Performing web search for query: 'Conduct market analysis to identify target demographics, competitive landscape, and market size using internal and external research.'
+  [ResearchTool]: Web search returned 0 results.
+  [ResearchTool LLM - Raw Response]: ```json
+{
+  "summary": "Market analysis conducted to identify target demographics, competitive landscape, and market size. Due to a lack of relevant internal documents and web search results, a comprehensive analysis could not be completed. Therefore, the findings are limited to the absence of readily available data.",    
+  "key_findings": [
+    "No relevant internal documents were identified.",
+    "No relevant web search results were identified.",
+    "Insufficient data available to determine tar...
+  [ResearchTool LLM - JSON String to Parse]: {
+  "summary": "Market analysis conducted to identify target demographics, competitive landscape, and market size. Due to a lack of relevant internal documents and web search results, a comprehensive analysis could not be completed. Therefore, the findings are limited to the absence of readily available data.",    
+  "key_findings": [
+    "No relevant internal documents were identified.",
+    "No relevant web search results were identified.",
+    "Insufficient data available to determine target demo...
+  [Marketing Response]: {'status': 'success', 'summary': 'Market analysis conducted to identify target demographics, competitive landscape, and market size. Due to a lack of relevant internal documents and web search results, a comprehensive analysis could not be completed. Therefore, the findings are limited to the absence of readily available data.', 'key_findings': ['No relevant internal documents were identified.', 'No relevant web search results were identified.', 'Insufficient data available to determine target demographics, competitive landscape, or market size.']}
+[Orchestrator]: Delegating task 'Develop a comprehensive sales strategy including go-to-market plan, pricing models, and distribution channels.' to Marketing.
+
+  [MarketingAgent]: Executing task: 'Develop a comprehensive sales strategy including go-to-market plan, pricing models, and distribution channels.'
+  [MarketingAgent LLM]: Processing prompt: 'Develop a comprehensive sales strategy including go-to-market plan, pricing models, and distribution...'
+DEBUG: LLM Response String: {"tool": "ResearchTool", "action": "perform_research", "parameters": {"query": "Develop a comprehensive sales strategy including go-to-market plan, pricing models, and distribution channels."}}
+DEBUG: Parsed Decision: {'tool': 'ResearchTool', 'action': 'perform_research', 'parameters': {'query': 'Develop a comprehensive sales strategy including go-to-market plan, pricing models, and distribution channels.'}}
+DEBUG: Tool Name: ResearchTool
+DEBUG: Entering TOOL branch with validation
+  [ResearchTool]: Performing research for query: 'Develop a comprehensive sales strategy including go-to-market plan, pricing models, and distribution channels.'
+  [ResearchTool]: Querying RAG system for internal documents.
+  [ResearchTool]: Performing web search for query: 'Develop a comprehensive sales strategy including go-to-market plan, pricing models, and distribution channels.'
+  [ResearchTool]: Web search returned 0 results.
+  [ResearchTool LLM - Raw Response]: ```json
+{
+  "summaary": "This document outlines a comprehensive sales strategy encompassing go-to-market (GTM) planning, pricing models, and distribution channels. Due to the lack of external web search results and internal documents, the strategy remains conceptual and requires further research and specific product/market context to be fully defined. The following provides a framework for developing a robust sales strategy.",
+  "key_findings": [
+    "A comprehensive sales strategy requires a we...
+  [ResearchTool LLM - JSON String to Parse]: {
+  "summaary": "This document outlines a comprehensive sales strategy encompassing go-to-market (GTM) planning, pricing models, and distribution channels. Due to the lack of external web search results and internal documents, the strategy remains conceptual and requires further research and specific product/market context to be fully defined. The following provides a framework for developing a robust sales strategy.",
+  "key_findings": [
+    "A comprehensive sales strategy requires a well-defin...
+  [Marketing Response]: {'status': 'success', 'summary': None, 'key_findings': ['A comprehensive sales strategy requires a well-defined go-to-market (GTM) plan.', 'Appropriate pricing models are crucial for revenue generation and market competitiveness.', 'Selecting optimal distribution channels is essential for reaching the target customer effectively.']}
+[Orchestrator]: Delegating task 'Define sales targets and key performance indicators (KPIs) for the new product line.' to Sales.
+
+  [SalesAgent]: Executing task: 'Define sales targets and key performance indicators (KPIs) for the new product line.'
+  [SalesAgent LLM]: Processing prompt: 'Define sales targets and key performance indicators (KPIs) for the new product line....'
+DEBUG: LLM Response String: {"tool": "ResearchTool", "action": "perform_research", "parameters": {"query": "Define sales targets and KPIs for a new product line, including best practices and examples."}}
+DEBUG: Parsed Decision: {'tool': 'ResearchTool', 'action': 'perform_research', 'parameters': {'query': 'Define sales targets and KPIs for a new product line, including best practices and examples.'}}
+DEBUG: Tool Name: ResearchTool
+DEBUG: Entering TOOL branch with validation
+  [ResearchTool]: Performing research for query: 'Define sales targets and KPIs for a new product line, including best practices and examples.'
+  [ResearchTool]: Querying RAG system for internal documents.
+  [ResearchTool]: Performing web search for query: 'Define sales targets and KPIs for a new product line, including best practices and examples.'
+  [ResearchTool]: Web search returned 0 results.
+  [ResearchTool LLM - Raw Response]: ```json
+{
+  "summaary": "Defining sales targets and KPIs for a new product line requires a strategic approach. Targets should be SMART (Specific, Measurable, Achievable, Relevant, Time-bound). KPIs should align with the product's objectives and the overall business strategy. Best practices include market research to understand potential demand, competitor analysis to benchmark performance, and collaboration between sales, marketing, and product teams. Examples of KPIs include sales revenue, mark...
+  [ResearchTool LLM - JSON String to Parse]: {
+  "summaary": "Defining sales targets and KPIs for a new product line requires a strategic approach. Targets should be SMART (Specific, Measurable, Achievable, Relevant, Time-bound). KPIs should align with the product's objectives and the overall business strategy. Best practices include market research to understand potential demand, competitor analysis to benchmark performance, and collaboration between sales, marketing, and product teams. Examples of KPIs include sales revenue, market share...
+  [Sales Response]: {'status': 'success', 'summary': None, 'key_findings': ['Sales targets should be SMART (Specific, Measurable, Achievable, Relevant, Time-bound).', "KPIs should align with the product's objectives and business strategy.", 'Market research and competitor analysis are essential for setting realistic targets.', 'Collaboration between sales, marketing, and product teams is crucial.', 'Key KPIs include sales revenue, market share, CAC, CLTV, and conversion rates.', 'Regular monitoring and adjustments are necessary for achieving sales goals.']}
+[Orchestrator]: Delegating task 'Develop a 3-year revenue forecast for the new product line, incorporating market analysis and sales projections.' to Finance.
+
+  [FinanceAgent]: Executing task: 'Develop a 3-year revenue forecast for the new product line, incorporating market analysis and sales projections.'
+  [FinanceAgent LLM]: Processing prompt: 'Develop a 3-year revenue forecast for the new product line, incorporating market analysis and sales ...'
+DEBUG: LLM Response String: {"tool": "ResearchTool", "action": "perform_research", "parameters": {"query": "Develop a 3-year revenue forecast for the new product line, incorporating market analysis and sales projections."}}
+DEBUG: Parsed Decision: {'tool': 'ResearchTool', 'action': 'perform_research', 'parameters': {'query': 'Develop a 3-year revenue forecast for the new product line, incorporating market analysis and sales projections.'}}
+DEBUG: Tool Name: ResearchTool
+DEBUG: Entering TOOL branch with validation
+  [ResearchTool]: Performing research for query: 'Develop a 3-year revenue forecast for the new product line, incorporating market analysis and sales projections.'
+  [ResearchTool]: Querying RAG system for internal documents.
+  [ResearchTool]: Performing web search for query: 'Develop a 3-year revenue forecast for the new product line, incorporating market analysis and sales projections.'
+  [ResearchTool]: Web search returned 0 results.
+  [ResearchTool LLM - Raw Response]: ```json
+{
+  "summary": "A 3-year revenue forecast for the new product line was requested, incorporating market analysis and sales projections. However, no relevant internal documents or web search results were found to support this analysis. Therefore, a comprehensive summary and key findings cannot be generated based on the provided information. The forecast remains undeveloped.",
+  "key_findings": []
+}
+```...
+  [ResearchTool LLM - JSON String to Parse]: {
+  "summary": "A 3-year revenue forecast for the new product line was requested, incorporating market analysis and sales projections. However, no relevant internal documents or web search results were found to support this analysis. Therefore, a comprehensive summary and key findings cannot be generated based on the provided information. The forecast remains undeveloped.",
+  "key_findings": []
+}...
+  [Finance Response]: {'status': 'success', 'summary': 'A 3-year revenue forecast for the new product line was requested, incorporating market analysis and sales projections. However, no relevant internal documents or web search results were found to support this analysis. Therefore, a comprehensive summary and key findings cannot be generated based on the provided information. The forecast remains undeveloped.', 'key_findings': []}
+[Orchestrator]: Delegating task 'Conduct a detailed cost analysis for the new product line, including production, marketing, and distribution costs.' to Finance.
+
+  [FinanceAgent]: Executing task: 'Conduct a detailed cost analysis for the new product line, including production, marketing, and distribution costs.'      
+  [FinanceAgent LLM]: Processing prompt: 'Conduct a detailed cost analysis for the new product line, including production, marketing, and dist...'
+DEBUG: LLM Response String: {"tool": "ResearchTool", "action": "perform_research", "parameters": {"query": "Detailed cost analysis for a new product line, including production, marketing, and distribution costs."}}
+DEBUG: Parsed Decision: {'tool': 'ResearchTool', 'action': 'perform_research', 'parameters': {'query': 'Detailed cost analysis for a new product line, including production, marketing, and distribution costs.'}}
+DEBUG: Tool Name: ResearchTool
+DEBUG: Entering TOOL branch with validation
+  [ResearchTool]: Performing research for query: 'Detailed cost analysis for a new product line, including production, marketing, and distribution costs.'   
+  [ResearchTool]: Querying RAG system for internal documents.
+  [ResearchTool]: Performing web search for query: 'Detailed cost analysis for a new product line, including production, marketing, and distribution costs.' 
+  [ResearchTool]: Web search returned 0 results.
+  [ResearchTool LLM - Raw Response]: ```json
+{
+  "summary": "This analysis provides a detailed cost breakdown for a new product line, encompassing production, marketing, and distribution expenses. Due to a lack of relevant internal documents and web search results, specific cost figures are unavailable. Therefore, the summary focuses on the categories of costs and their typical components.",
+  "key_findings": [
+    "Production costs typically include raw materials, manufacturing labor, factory overhead, and quality control.",
+    "...
+  [ResearchTool LLM - JSON String to Parse]: {
+  "summary": "This analysis provides a detailed cost breakdown for a new product line, encompassing production, marketing, and distribution expenses. Due to a lack of relevant internal documents and web search results, specific cost figures are unavailable. Therefore, the summary focuses on the categories of costs and their typical components.",
+  "key_findings": [
+    "Production costs typically include raw materials, manufacturing labor, factory overhead, and quality control.",
+    "Marketin...
+  [Finance Response]: {'status': 'success', 'summary': 'This analysis provides a detailed cost breakdown for a new product line, encompassing production, marketing, and distribution expenses. Due to a lack of relevant internal documents and web search results, specific cost figures are unavailable. Therefore, the summary focuses on the categories of costs and their typical components.', 'key_findings': ['Production costs typically include raw materials, manufacturing labor, factory overhead, and quality control.', 'Marketing costs encompass advertising, public relations, market research, promotional materials, and sales team expenses.', 'Distribution costs involve warehousing, transportation, shipping, and order fulfillment.']}
+[Orchestrator]: Delegating task 'Project profitability of the new product line based on revenue and cost forecasts.' to Finance.
+
+  [FinanceAgent]: Executing task: 'Project profitability of the new product line based on revenue and cost forecasts.'
+  [FinanceAgent LLM]: Processing prompt: 'Project profitability of the new product line based on revenue and cost forecasts....'
+DEBUG: LLM Response String: {"tool": "AnalysisTool", "action": "analyze_csv", "parameters": {"file_path": "C:\\Users\\craig\\Desktop\\MainProjects\\DISSERTATION_FINAL\\documents\\policies\\budget.csv"}}
+DEBUG: Parsed Decision: {'tool': 'AnalysisTool', 'action': 'analyze_csv', 'parameters': {'file_path': 'C:\\Users\\craig\\Desktop\\MainProjects\\DISSERTATION_FINAL\\documents\\policies\\budget.csv'}}
+DEBUG: Tool Name: AnalysisTool
+DEBUG: Entering TOOL branch with validation
+  [Finance Response]: Analysis of budget.csv:
+Shape: 6 rows, 3 columns
+
+Numerical Column Summary:
+              Amount
+count       6.000000
+mean    73333.333333
+std     29439.202888
+min     50000.000000
+25%     52500.000000
+50%     60000.000000
+75%     90000.000000
+max    120000.000000
+
+Categorical Column Value Counts (Top 5):
+- Category:
+Category
+Revenue     2
+Expenses    2
+Profit      2
+- Month:
+Month
+January     3
+February    3
+
+[Orchestrator]: Delegating task 'Determine operational requirements for the new product line, including resources, production timelines, and supply chain management.' to Operations.
+
+  [OperationsAgent]: Executing task: 'Determine operational requirements for the new product line, including resources, production timelines, and supply chain management.'
+  [OperationsAgent LLM]: Processing prompt: 'Determine operational requirements for the new product line, including resources, production timelin...'        
+DEBUG: LLM Response String: {"tool": "SequentialThinkingTool", "action": "decompose_goal", "parameters": {"goal": "Determine operational requirements for the new product line, including resources, production timelines, and supply chain management."}}
+DEBUG: Parsed Decision: {'tool': 'SequentialThinkingTool', 'action': 'decompose_goal', 'parameters': {'goal': 'Determine operational requirements for the new product line, including resources, production timelines, and supply chain management.'}}
+DEBUG: Tool Name: SequentialThinkingTool
+DEBUG: Entering TOOL branch with validation
+  [SequentialThinkingTool LLM]: Processing prompt: '
+        Decompose the following high-level goal into a sequence of actionable steps:
+        Goal: ...'
+  [Operations Response]: [{'step': 1, 'task': 'Define Product Line Scope & Specifications', 'agent': 'Product Management'}, {'step': 2, 'task': 'Conduct Market Research & Competitive Analysis', 'agent': 'Market Research Team'}, {'step': 3, 'task': 'Estimate Initial Production Volume & Demand Forecast', 'agent': 'Sales & Forecasting Team'}, {'step': 4, 'task': 'Identify Required Resources (Labor, Equipment, Facilities)', 'agent': 'Operations & Engineering'}, {'step': 5, 'task': 'Develop Production Timeline & Capacity Planning', 'agent': 'Operations & Engineering'}, {'step': 6, 'task': 'Identify Key Suppliers & Evaluate Supply Chain Options', 'agent': 'Supply Chain Management'}, {'step': 7, 'task': 'Assess Supply Chain Risks & Develop Mitigation Strategies', 'agent': 'Supply Chain Management'}, {'step': 8, 'task': 'Define Inventory Management Strategy (Safety Stock, Reorder Points)', 'agent': 'Supply Chain Management'}, {'step': 9, 'task': 'Develop Quality Control Procedures & Standards', 'agent': 'Quality Assurance'}, {'step': 10, 'task': 'Document all Operational Requirements in a comprehensive report', 'agent': 'Project Management'}]
+[Orchestrator]: Delegating task 'Develop a detailed production plan and timeline for the new product line.' to Operations.
+
+  [OperationsAgent]: Executing task: 'Develop a detailed production plan and timeline for the new product line.'
+  [OperationsAgent LLM]: Processing prompt: 'Develop a detailed production plan and timeline for the new product line....'
+DEBUG: LLM Response String: {"tool": "SequentialThinkingTool", "action": "decompose_goaal", "parameters": {"goal": "Develop a detailed production plan and timeline for the new product line."}}
+DEBUG: Parsed Decision: {'tool': 'SequentialThinkingTool', 'action': 'decompose_goaal', 'parameters': {'goal': 'Develop a detailed production plan and timeline for the new product line.'}}
+DEBUG: Tool Name: SequentialThinkingTool
+DEBUG: Entering TOOL branch with validation
+  [Operations Response]: Error: Action 'decompose_goaal' not found or not callable on tool 'SequentialThinkingTool'. Available actions: decompose_goal, execute_sequence, llm_model
+[Orchestrator]: Delegating task 'Assess staffing needs for the new product line, including hiring requirements and organizational structure changes.' to HR. 
+
+  [HRAgent]: Executing task: 'Assess staffing needs for the new product line, including hiring requirements and organizational structure changes.'
+  [HRAgent LLM]: Processing prompt: 'Assess staffing needs for the new product line, including hiring requirements and organizational str...'
+DEBUG: LLM Response String: {"tool": "ResearchTool", "action": "perform_research", "parameters": {"query": "Assess staffing needs for a new product line, including hiring requirements and organizational structure changes. Consider relevant policies and market research."}}
+DEBUG: Parsed Decision: {'tool': 'ResearchTool', 'action': 'perform_research', 'parameters': {'query': 'Assess staffing needs for a new product line, including hiring requirements and organizational structure changes. Consider relevant policies and market research.'}}
+DEBUG: Tool Name: ResearchTool
+DEBUG: Entering TOOL branch with validation
+  [ResearchTool]: Performing research for query: 'Assess staffing needs for a new product line, including hiring requirements and organizational structure changes. Consider relevant policies and market research.'
+  [ResearchTool]: Querying RAG system for internal documents.
+  [ResearchTool]: Performing web search for query: 'Assess staffing needs for a new product line, including hiring requirements and organizational structure changes. Consider relevant policies and market research.'
+  [ResearchTool]: Web search returned 0 results.
+  [ResearchTool LLM - Raw Response]: ```json
+{
+  "summary": "This assessment addresses staffing needs for a new product line, encompassing hiring requirements and organizational structure adjustments, while considering relevant market research. Due to the lack of available internal documents and web search results, a comprehensive analysis is currently impossible. Therefore, the summary focuses on the fundamental requirements and considerations for such a project.",
+  "key_findings": [
+    "Requires a thorough market research phase...
+  [ResearchTool LLM - JSON String to Parse]: {
+  "summary": "This assessment addresses staffing needs for a new product line, encompassing hiring requirements and organizational structure adjustments, while considering relevant market research. Due to the lack of available internal documents and web search results, a comprehensive analysis is currently impossible. Therefore, the summary focuses on the fundamental requirements and considerations for such a project.",
+  "key_findings": [
+    "Requires a thorough market research phase to dete...
+  [HR Response]: {'status': 'success', 'summary': 'This assessment addresses staffing needs for a new product line, encompassing hiring requirements and organizational structure adjustments, while considering relevant market research. Due to the lack of available internal documents and web search results, a comprehensive analysis is currently impossible. Therefore, the summary focuses on the fundamental requirements and considerations for such a project.', 'key_findings': ['Requires a thorough market research phase to determine demand, target audience, and competitive landscape, which will inform staffing levels and skill sets.', 'Organizational structure adjustments are likely necessary to accommodate the new product line, potentially involving new departments, teams, or reporting lines.', "Hiring requirements will depend on the product line's complexity and scope, potentially including roles in product development, marketing, sales, operations, and customer support.", 'Consideration of relevant policies (e.g., compensation, benefits, legal compliance) is crucial for effective staffing and organizational management.']}
+[Orchestrator]: Delegating task 'Develop a training plan for employees related to the new product line.' to HR.
+
+  [HRAgent]: Executing task: 'Develop a training plan for employees related to the new product line.'
+  [HRAgent LLM]: Processing prompt: 'Develop a training plan for employees related to the new product line....'
+DEBUG: LLM Response String: {"tool": "ResearchTool", "action": "perform_research", "parameters": {"query": "Develop a training plan for employees related to the new product line."}}
+DEBUG: Parsed Decision: {'tool': 'ResearchTool', 'action': 'perform_research', 'parameters': {'query': 'Develop a training plan for employees related to the new product line.'}}
+DEBUG: Tool Name: ResearchTool
+DEBUG: Entering TOOL branch with validation
+  [ResearchTool]: Performing research for query: 'Develop a training plan for employees related to the new product line.'
+  [ResearchTool]: Querying RAG system for internal documents.
+  [ResearchTool]: Performing web search for query: 'Develop a training plan for employees related to the new product line.'
+  [ResearchTool]: Web search returned 0 results.
+  [ResearchTool LLM - Raw Response]: ```json
+{
+  "summaary": "A training plan for employees regarding the new product line is required. No relevant internal documents or web search results were found to synthesize into a specific plan. Therefore, a comprehensive training plan needs to be developed, covering product features, benefits, target audience, sales strategies, and potential customer questions. The plan should incorporate various training methods like presentations, hands-on workshops, online modules, and Q&A sessions to en...
+  [ResearchTool LLM - JSON String to Parse]: {
+  "summaary": "A training plan for employees regarding the new product line is required. No relevant internal documents or web search results were found to synthesize into a specific plan. Therefore, a comprehensive training plan needs to be developed, covering product features, benefits, target audience, sales strategies, and potential customer questions. The plan should incorporate various training methods like presentations, hands-on workshops, online modules, and Q&A sessions to ensure eff...
+  [HR Response]: {'status': 'success', 'summary': None, 'key_findings': ['A training plan is necessary for employees on the new product line.', 'The training plan should cover product features, benefits, target audience, sales strategies, and customer FAQs.', 'Multiple training methods (presentations, workshops, online modules, Q&A) are recommended for effective knowledge transfer.']}
+[Orchestrator]: Delegating task 'Identify and address organizational changes required to support the new product line launch.' to HR.
+
+  [HRAgent]: Executing task: 'Identify and address organizational changes required to support the new product line launch.'
+  [HRAgent LLM]: Processing prompt: 'Identify and address organizational changes required to support the new product line launch....'
+DEBUG: LLM Response String: {"tool": "ResearchTool", "action": "perform_research", "parameters": {"query": "organizational changes required to support a new product line launch"}}
+DEBUG: Parsed Decision: {'tool': 'ResearchTool', 'action': 'perform_research', 'parameters': {'query': 'organizational changes required to support a new product line launch'}}
+DEBUG: Tool Name: ResearchTool
+DEBUG: Entering TOOL branch with validation
+  [ResearchTool]: Performing research for query: 'organizational changes required to support a new product line launch'
+  [ResearchTool]: Querying RAG system for internal documents.
+  [ResearchTool]: Performing web search for query: 'organizational changes required to support a new product line launch'
+  [ResearchTool]: Web search returned 0 results.
+  [ResearchTool LLM - Raw Response]: ```json
+{
+  "summary": "Due to the lack of available internal documents and web search results, a comprehensive summary of organizational changes required to support a new product line launch cannot be provided. Therefore, key findings are absent.",
+  "key_findings": []
+}
+```...
+  [ResearchTool LLM - JSON String to Parse]: {
+  "summary": "Due to the lack of available internal documents and web search results, a comprehensive summary of organizational changes required to support a new product line launch cannot be provided. Therefore, key findings are absent.",
+  "key_findings": []
+}...
+  [HR Response]: {'status': 'success', 'summary': 'Due to the lack of available internal documents and web search results, a comprehensive summary of organizational changes required to support a new product line launch cannot be provided. Therefore, key findings are absent.', 'key_findings': []}
+[Orchestrator]: Delegating task 'Review internal policy documents to ensure compliance with financial regulations and guidelines for the new product line.' to Finance.
+
+  [FinanceAgent]: Executing task: 'Review internal policy documents to ensure compliance with financial regulations and guidelines for the new product line.'
+  [FinanceAgent LLM]: Processing prompt: 'Review internal policy documents to ensure compliance with financial regulations and guidelines for ...'
+DEBUG: LLM Response String: {"tool": "ResearchTool", "action": "perform_research", "parameters": {"query": "Review internal policy documents to ensure compliance with financial regulations and guidelines for the new product line.", "sources": ["budget.csv", "HR_Policy_2025.md", "market_research.md"]}}
+DEBUG: Parsed Decision: {'tool': 'ResearchTool', 'action': 'perform_research', 'parameters': {'query': 'Review internal policy documents to ensure compliance with financial regulations and guidelines for the new product line.', 'sources': ['budget.csv', 'HR_Policy_2025.md', 'market_research.md']}}
+DEBUG: Tool Name: ResearchTool
+DEBUG: Entering TOOL branch with validation
+  [ResearchTool]: Performing research for query: 'Review internal policy documents to ensure compliance with financial regulations and guidelines for the new product line.'
+  [ResearchTool]: Querying RAG system for internal documents.
+  [ResearchTool]: Querying RAG system for local document: budget.csv
+  [ResearchTool]: Querying RAG system for local document: HR_Policy_2025.md
+  [ResearchTool]: Querying RAG system for local document: market_research.md
+  [ResearchTool LLM - Raw Response]: ```json
+{
+  "summary": "No relevant internal policy documents were found to assess compliance with financial regulations and guidelines for the new product line. This includes documents related to budget, HR policies, and market research.",
+  "key_findings": [
+    "No internal policy documents related to financial regulations and guidelines for the new product line were located.",
+    "Specific documents such as budget.csv, HR_Policy_2025.md, and market_research.md did not contain relevant infor...
+  [ResearchTool LLM - JSON String to Parse]: {
+  "summary": "No relevant internal policy documents were found to assess compliance with financial regulations and guidelines for the new product line. This includes documents related to budget, HR policies, and market research.",
+  "key_findings": [
+    "No internal policy documents related to financial regulations and guidelines for the new product line were located.",
+    "Specific documents such as budget.csv, HR_Policy_2025.md, and market_research.md did not contain relevant information."...
+  [Finance Response]: {'status': 'success', 'summary': 'No relevant internal policy documents were found to assess compliance with financial regulations and guidelines for the new product line. This includes documents related to budget, HR policies, and market research.', 'key_findings': ['No internal policy documents related to financial regulations and guidelines for the new product line were located.', 'Specific documents such as budget.csv, HR_Policy_2025.md, and market_research.md did not contain relevant information.']}
+[Orchestrator]: Delegating task 'Gather and summarize key findings from external market research reports.' to Marketing.
+
+  [MarketingAgent]: Executing task: 'Gather and summarize key findings from external market research reports.'
+  [MarketingAgent LLM]: Processing prompt: 'Gather and summarize key findings from external market research reports....'
+DEBUG: LLM Response String: {"tool": "ResearchTool", "action": "perform_research", "parameters": {"query": "Gather and summarize key findings from external market research reports."}}
+DEBUG: Parsed Decision: {'tool': 'ResearchTool', 'action': 'perform_research', 'parameters': {'query': 'Gather and summarize key findings from external market research reports.'}}
+DEBUG: Tool Name: ResearchTool
+DEBUG: Entering TOOL branch with validation
+  [ResearchTool]: Performing research for query: 'Gather and summarize key findings from external market research reports.'
+  [ResearchTool]: Querying RAG system for internal documents.
+  [ResearchTool]: Performing web search for query: 'Gather and summarize key findings from external market research reports.'
+  [ResearchTool]: Web search returned 0 results.
+  [ResearchTool LLM - Raw Response]: ```json
+{
+  "summaary": "No external market research reports were found through the specified channels (internal documents and web search). Therefore, a summary and key findings cannot be generated.",
+  "key_findings": []
+}
+```...
+  [ResearchTool LLM - JSON String to Parse]: {
+  "summaary": "No external market research reports were found through the specified channels (internal documents and web search). Therefore, a summary and key findings cannot be generated.",
+  "key_findings": []
+}...
+  [Marketing Response]: {'status': 'success', 'summary': None, 'key_findings': []}
+[Orchestrator]: Delegating task 'Consolidate key findings and actionable recommendations into a comprehensive strategic plan.' to Finance.
+
+  [FinanceAgent]: Executing task: 'Consolidate key findings and actionable recommendations into a comprehensive strategic plan.'
+  [FinanceAgent LLM]: Processing prompt: 'Consolidate key findings and actionable recommendations into a comprehensive strategic plan....'
+DEBUG: LLM Response String: {"tool": "ResearchTool", "action": "perform_research", "parameters": {"query": "consolidate key findings and actionable recommendations into a comprehensive strategic plan, using budget.csv, HR_Policy_2025.md, and market_research.md"}}
+DEBUG: Parsed Decision: {'tool': 'ResearchTool', 'action': 'perform_research', 'parameters': {'query': 'consolidate key findings and actionable recommendations into a comprehensive strategic plan, using budget.csv, HR_Policy_2025.md, and market_research.md'}}
+DEBUG: Tool Name: ResearchTool
+DEBUG: Entering TOOL branch with validation
+  [ResearchTool]: Performing research for query: 'consolidate key findings and actionable recommendations into a comprehensive strategic plan, using budget.csv, HR_Policy_2025.md, and market_research.md'
+  [ResearchTool]: Querying RAG system for internal documents.
+  [ResearchTool]: Performing web search for query: 'consolidate key findings and actionable recommendations into a comprehensive strategic plan, using budget.csv, HR_Policy_2025.md, and market_research.md'
+  [ResearchTool]: Web search returned 0 results.
+  [ResearchTool LLM - Raw Response]: ```json
+{
+  "summaary": "The provided information does not contain any relevant data to consolidate key findings and actionable recommendations into a comprehensive strategic plan using budget.csv, HR_Policy_2025.md, and market_research.md. No relevant internal documents or web search results were found. Therefore, a strategic plan cannot be generated based on the given input.",
+  "key_findings": []
+}
+```...
+  [ResearchTool LLM - JSON String to Parse]: {
+  "summaary": "The provided information does not contain any relevant data to consolidate key findings and actionable recommendations into a comprehensive strategic plan using budget.csv, HR_Policy_2025.md, and market_research.md. No relevant internal documents or web search results were found. Therefore, a strategic plan cannot be generated based on the given input.",
+  "key_findings": []
+}...
+  [Finance Response]: {'status': 'success', 'summary': None, 'key_findings': []}
+[Orchestrator]: Goal 'As the CEO, I need a comprehensive strategic plan for launching a new product line. This plan should include: Market Analysis (target demographics, competitive landscape, market size); Financial Projections (3-year revenue forecast, cost analysis, profitability); Operational Requirements (resources, production timelines, supply chain); HR Impact (staffing, training, organizational changes); Sales Strategy (go-to-market, pricing, distribution). Ensure recommendations are supported by internal policy documents and external market research. Provide a consolidated summary of key findings and actionable recommendations.' orchestration complete.
+
+Enter a high-level goal for the Orchestrator (or 'exit' to quit):
