@@ -1,0 +1,4 @@
+{
+  "reasoning_model": "llama3",
+  "embedding_model": "nomic-embed-text"
+}

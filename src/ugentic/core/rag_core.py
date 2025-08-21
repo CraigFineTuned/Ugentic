@@ -16,9 +16,22 @@ except nltk.downloader.DownloadError:
 
 
 ENABLE_RAG = True  # Toggle for Retrieval-Augmented Generation
-EMBEDDING_MODEL = "nomic-embed-text"  # Local embedding model compatible with Ollama
 SAVE_HISTORY = True
 
+def get_embedding_model_from_config():
+    """Reads the embedding model name from the config file."""
+    # Navigate three levels up from core -> ugentic -> src -> project root
+    config_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'config.json')
+    try:
+        with open(config_path, 'r') as f:
+            config = json.load(f)
+        # Return the model from config, with a fallback to the original default
+        return config.get("embedding_model", "nomic-embed-text")
+    except (FileNotFoundError, json.JSONDecodeError):
+        # Return the default if config.json is missing or malformed
+        return "nomic-embed-text"
+
+EMBEDDING_MODEL = get_embedding_model_from_config()
 
 def get_ollama_embeddings():
     """Initializes and returns the Ollama embeddings model."""
